@@ -18,10 +18,10 @@ public class Quiz {
     private String description;
     private Integer numberOfQuestions;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Category category;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
 }

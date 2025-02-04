@@ -1,7 +1,7 @@
 package fr.acajou.quiz.service;
 
 
-import fr.acajou.quiz.domain.User;
+import fr.acajou.quiz.domain.Users;
 import fr.acajou.quiz.dto.AuthenticationRequest;
 import fr.acajou.quiz.dto.AuthenticationResponse;
 import fr.acajou.quiz.dto.RegisterRequest;
@@ -25,11 +25,11 @@ public class UserService {
     private final JwtService jwtService;
 
     public void register(RegisterRequest request) {
-        User user = User.builder()
+        Users users = Users.builder()
                 .username(request.username())
                 .password(passwordEncoder.encode(request.password()))
                 .build();
-        userRepository.save(user);
+        userRepository.save(users);
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -38,9 +38,9 @@ public class UserService {
                     request.username(),
                     request.password()
             );
-            User user = userRepository.findByUsername(request.username()).orElseThrow();
+            Users users = userRepository.findByUsername(request.username()).orElseThrow();
             authenticationManager.authenticate(authenticationToken);
-            final String token = jwtService.generateToken(user);
+            final String token = jwtService.generateToken(users);
             return new AuthenticationResponse(token);
         }catch (AuthenticationException e) {
             throw new RuntimeException("Invalid username/password supplied");

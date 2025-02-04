@@ -1,6 +1,6 @@
 package fr.acajou.quiz.service;
 
-import fr.acajou.quiz.domain.User;
+import fr.acajou.quiz.domain.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -61,27 +61,27 @@ public class JwtService {
     /**
      * Generates a JWT token for the given user.
      *
-     * @param user The user for whom the token is generated
+     * @param users The user for whom the token is generated
      * @return The generated JWT token
      */
-    public String generateToken(User user) {
-        return generateToken(new HashMap<>(), user);
+    public String generateToken(Users users) {
+        return generateToken(new HashMap<>(), users);
     }
 
     /**
      * Generates a JWT token with additional claims for the given user.
      *
      * @param extraClaims Additional claims to include in the token
-     * @param user        The user for whom the token is generated
+     * @param users        The user for whom the token is generated
      * @return The generated JWT token with extra claims
      */
     public String generateToken(
             Map<String, Object> extraClaims,
-            User user
+            Users users
     ) {
         return buildToken(
                 extraClaims,
-                user,
+                users,
                 jwtExpirationTime);
     }
 
@@ -90,17 +90,17 @@ public class JwtService {
      * Builds a JWT token based on the provided claims, user, and expiration time.
      *
      * @param extraClaims    Additional claims to include in the token
-     * @param user           The user for whom the token is generated
+     * @param users           The user for whom the token is generated
      * @param expirationTime The expiration time of the token
      * @return The built JWT token
      */
     private String buildToken(Map<String, Object> extraClaims,
-                              User user, long expirationTime) {
+                              Users users, long expirationTime) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .claim("roles", user.getAuthorities())
-                .setSubject(user.getUsername())
+                .claim("roles", users.getAuthorities())
+                .setSubject(users.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

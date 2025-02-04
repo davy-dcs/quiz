@@ -1,12 +1,12 @@
 package fr.acajou.quiz.repository;
 
 
-import fr.acajou.quiz.domain.User;
+import fr.acajou.quiz.domain.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface IUserRepository extends JpaRepository<User, Long> {
+public interface IUserRepository extends JpaRepository<Users, Long> {
 
-    Optional<User> findByUsername(String username);
+    Optional<Users> findByUsername(String username);
 }

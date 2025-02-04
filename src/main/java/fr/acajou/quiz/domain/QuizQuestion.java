@@ -18,8 +18,7 @@ public class QuizQuestion {
     @JoinColumn(name = "quiz")
     private Quiz quiz;
 
-    //TODO Replace Object by Question
     @ManyToOne
     @JoinColumn(name = "question")
-    private Object question;
+    private Question question;
 }

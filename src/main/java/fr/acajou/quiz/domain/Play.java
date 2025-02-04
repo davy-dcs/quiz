@@ -17,8 +17,8 @@ public class Play {
     private int score;
 
     @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
+    @JoinColumn(name = "users")
+    private Users users;
 
     @ManyToOne
     @JoinColumn(name = "session")

@@ -29,8 +29,8 @@ public class Session {
     private Quiz quiz;
 
     @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
+    @JoinColumn(name = "users")
+    private Users users;
 
 
     @PrePersist

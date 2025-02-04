@@ -32,6 +32,9 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
+    @Enumerated(EnumType.STRING)
+    private List<Category> categories;
+
     @PrePersist
     public void prePersist() {
         this.uuid = UUID.randomUUID();

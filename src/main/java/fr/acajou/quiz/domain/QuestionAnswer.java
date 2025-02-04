@@ -19,8 +19,7 @@ public class QuestionAnswer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID uuid;
+    private UUID uuid = UUID.randomUUID();
 
     @ManyToOne
     @JoinColumn(name = "id_question", nullable = false)
