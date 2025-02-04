@@ -16,8 +16,11 @@ import java.util.UUID;
 @Table(name = "QUESTION_ANSWER")
 public class QuestionAnswer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID uuid;
 
     @ManyToOne
     @JoinColumn(name = "id_question", nullable = false)

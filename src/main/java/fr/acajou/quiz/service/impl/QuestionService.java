@@ -1,4 +1,8 @@
 package fr.acajou.quiz.service.impl;
 
-public class QuestionService {
+import fr.acajou.quiz.service.IQuestionService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class QuestionService implements IQuestionService {
 }

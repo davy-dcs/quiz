@@ -21,8 +21,10 @@ import java.util.UUID;
 public class Answer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private UUID uuid = UUID.randomUUID();
 
     @NotBlank(message = "Le champs value de la réponse dans ANSWER est obligatoire")
     private String value;

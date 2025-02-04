@@ -21,8 +21,10 @@ import java.util.UUID;
 @Table(name = "QUESTION")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private UUID uuid;
 
     @NotBlank(message = "Le champs value de la question dans QUESTION est obligatoire")
     private String value;
@@ -30,4 +32,8 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
+    @PrePersist
+    public void prePersist() {
+        this.uuid = UUID.randomUUID();
+    }
 }
