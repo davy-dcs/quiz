@@ -29,4 +29,9 @@ public class Answer {
     @NotBlank(message = "Le champs value de la réponse dans ANSWER est obligatoire")
     private String value;
 
+    @PrePersist
+    public void prePersist() {
+        this.uuid = UUID.randomUUID();
+    }
+
 }

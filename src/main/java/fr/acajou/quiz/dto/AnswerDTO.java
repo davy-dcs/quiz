@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
 
 public record AnswerDTO(
-        UUID id,
+        UUID uuid,
 
         @NotBlank(message = "Le nom est obligatoire")
         String value
