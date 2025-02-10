@@ -28,29 +28,31 @@ public class QuestionAnswerService {
 
     public QuestionAnswerDTO createQuestionAnswer(QuestionAnswerDTO questionAnswerDTO) {
 
-        Question question = questionService.getbyUUID(questionAnswerDTO.question());
-        Answer answer = answerService.getbyUUID(questionAnswerDTO.answer());
+        Question question = questionService.getbyUUID(questionAnswerDTO.question_uuid());
+        Answer answer = answerService.getbyUUID(questionAnswerDTO.answer_uuid());
 
         QuestionAnswer questionAnswer = new QuestionAnswer(null,null,question,answer,questionAnswerDTO.correct());
         QuestionAnswer savedQuestionAnswer = questionAnswerRepository.save(questionAnswer);
-        return questionAnswerMapper.entityToDto(savedQuestionAnswer);
+        return questionAnswerMapper.entityToDto(savedQuestionAnswer,question,answer);
     }
 
     public QuestionAnswerDTO updateQuestionAnswer(QuestionAnswerDTO questionAnswerDTO) {
 
         Long id = getId(questionAnswerDTO);
         
-        Question question = questionService.getbyUUID(questionAnswerDTO.question());
-        Answer answer = answerService.getbyUUID(questionAnswerDTO.answer());
+        Question question = questionService.getbyUUID(questionAnswerDTO.question_uuid());
+        Answer answer = answerService.getbyUUID(questionAnswerDTO.answer_uuid());
 
         QuestionAnswer updateQuestionAnswer = new QuestionAnswer(id,questionAnswerDTO.uuid(),question,answer,questionAnswerDTO.correct());
         QuestionAnswer savedQuestionAnswer = questionAnswerRepository.save(updateQuestionAnswer);
-        return questionAnswerMapper.entityToDto(savedQuestionAnswer);
+        return questionAnswerMapper.entityToDto(savedQuestionAnswer, question, answer);
     }
 
     public QuestionAnswerDTO getQuestionAnswerbyUUID(UUID uuid) {
         Optional<QuestionAnswer> questionAnswer = questionAnswerRepository.findByUuid(uuid);
-        return questionAnswer.map(questionAnswerMapper::entityToDto).orElseThrow(() -> new QuestionAnswerNotFoundException("Question Answer Not Found : L'uuid questionAnswer "+uuid+" n'a pas été trouvé"));
+        QuestionAnswer qa =  questionAnswer.orElseThrow(() -> new QuestionAnswerNotFoundException("Question Answer Not Found : L'uuid questionAnswer "+uuid+" n'a pas été trouvé"));
+        QuestionAnswerDTO qdto = new QuestionAnswerDTO(uuid,qa.getQuestion().getUuid(),qa.getAnswer().getUuid(), qa.isCorrect());
+        return qdto;
     }
 
     public void deleteQuestionAnswerbyUUID(UUID uuid) {

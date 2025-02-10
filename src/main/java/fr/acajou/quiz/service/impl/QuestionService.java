@@ -50,8 +50,8 @@ public class QuestionService implements IQuestionService {
         return questionEntity.getId();
     }
 
-    public Question getbyUUID(Question question) {
-        UUID uuid = question.getUuid();
+    public Question getbyUUID(UUID uuid) {
+        //UUID uuid = question.getUuid();
         Question questionEntity = questionRepository.findByUuid(uuid)
                 .orElseThrow(() -> new QuestionNotFoundException("Question Not Found : L'uuid question " + uuid + " n'a pas été trouvé"));
         return questionEntity;

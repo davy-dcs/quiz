@@ -1,5 +1,6 @@
 package fr.acajou.quiz.dto.mapper;
 
+import fr.acajou.quiz.domain.Answer;
 import fr.acajou.quiz.domain.Question;
 import fr.acajou.quiz.domain.QuestionAnswer;
 import fr.acajou.quiz.dto.QuestionAnswerDTO;
@@ -16,20 +17,20 @@ public class QuestionAnswerMapper {
     private final IQuestionAnswerRepository questionAnswerRepository;
 
     //entité vers dto
-    public QuestionAnswerDTO entityToDto(QuestionAnswer questionAnswer) {
+    public QuestionAnswerDTO entityToDto(QuestionAnswer questionAnswer, Question question, Answer answer) {
         return new QuestionAnswerDTO(questionAnswer.getUuid(),
-                questionAnswer.getQuestion(),
-                questionAnswer.getAnswer(),
+                question.getUuid(),
+                answer.getUuid(),
                 questionAnswer.isCorrect()
         );
     }
 
     //dto vers entité
-    public QuestionAnswer dtoToEntity(QuestionAnswerDTO questionAnswerDTO, Long id){
+    public QuestionAnswer dtoToEntity(QuestionAnswerDTO questionAnswerDTO, Long id, Question question, Answer answer){
         return new QuestionAnswer(id,
                 questionAnswerDTO.uuid(),
-                questionAnswerDTO.question(),
-                questionAnswerDTO.answer(),
+                question,
+                answer,
                 questionAnswerDTO.correct());
     }
 }

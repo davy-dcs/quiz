@@ -10,9 +10,9 @@ import java.util.UUID;
 public record QuestionAnswerDTO(
         UUID uuid,
 
-        Question question,
+        UUID question_uuid,
 
-        Answer answer,
+        UUID answer_uuid,
 
         boolean correct
 ) {}
