@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.UUID;
 
 @Table(name = "users")
 @Getter
@@ -20,6 +21,7 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private UUID uuid;
     private String username;
     private String password;
     @ManyToOne
@@ -49,5 +51,10 @@ public class Users implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(role.getName()));
+    }
+
+    @PrePersist
+    void prePersist() {
+        uuid = UUID.randomUUID();
     }
 }

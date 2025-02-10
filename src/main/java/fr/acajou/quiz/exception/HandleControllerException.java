@@ -14,7 +14,7 @@ public class HandleControllerException {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
-    @ExceptionHandler(value = {QuizConflictException.class})
+    @ExceptionHandler(value = {QuizConflictException.class, SessionConflictException.class})
     protected ResponseEntity<Object> handleConflict(RuntimeException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }

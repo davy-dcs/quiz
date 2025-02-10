@@ -1,25 +1,16 @@
 package fr.acajou.quiz.service.impl;
 
-import fr.acajou.quiz.controller.QuizController;
-import fr.acajou.quiz.domain.Quiz;
-import fr.acajou.quiz.dto.IQuizMapper;
-import fr.acajou.quiz.dto.QuizRequest;
-import fr.acajou.quiz.dto.QuizResponse;
+import fr.acajou.quiz.dto.quiz.QuizRequest;
 import fr.acajou.quiz.exception.QuizConflictException;
 import fr.acajou.quiz.exception.QuizNotFoundException;
 import fr.acajou.quiz.repository.IQuizRepository;
-import fr.acajou.quiz.service.IQuizService;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
 
-import java.lang.reflect.Executable;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 import static fr.acajou.quiz.domain.Category.*;
 import static fr.acajou.quiz.domain.Difficulty.*;

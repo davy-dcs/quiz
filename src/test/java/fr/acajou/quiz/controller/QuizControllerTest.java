@@ -1,15 +1,12 @@
 package fr.acajou.quiz.controller;
 
-import fr.acajou.quiz.domain.Category;
-import fr.acajou.quiz.domain.Difficulty;
-import fr.acajou.quiz.dto.QuizRequest;
-import fr.acajou.quiz.dto.QuizResponse;
+import fr.acajou.quiz.dto.quiz.QuizRequest;
+import fr.acajou.quiz.dto.quiz.QuizResponse;
 import fr.acajou.quiz.exception.QuizConflictException;
 import fr.acajou.quiz.exception.QuizNotFoundException;
 import fr.acajou.quiz.service.IQuizService;
 import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -40,9 +37,9 @@ class QuizControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        quizRequest = new QuizRequest("titre request", "description request", 20, HISTORY, EASY);
-        quizResponse = new QuizResponse("titre reponse", "description response", 30, GEOGRAPHY, MEDIUM);
         uuid = UUID.randomUUID();
+        quizRequest = new QuizRequest("titre request", "description request", 20, HISTORY, EASY);
+        quizResponse = new QuizResponse(uuid, "titre reponse", "description response", 30, GEOGRAPHY, MEDIUM);
     }
 
     @Test

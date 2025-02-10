@@ -1,7 +1,7 @@
 package fr.acajou.quiz.service;
 
-import fr.acajou.quiz.dto.QuizRequest;
-import fr.acajou.quiz.dto.QuizResponse;
+import fr.acajou.quiz.dto.quiz.QuizRequest;
+import fr.acajou.quiz.dto.quiz.QuizResponse;
 
 import java.util.UUID;
 

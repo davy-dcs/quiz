@@ -1,10 +1,13 @@
 package fr.acajou.quiz.dto;
 
 import fr.acajou.quiz.domain.Quiz;
+import fr.acajou.quiz.dto.quiz.IQuizMapper;
+import fr.acajou.quiz.dto.quiz.QuizResponse;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import static fr.acajou.quiz.domain.Category.HISTORY;
 import static fr.acajou.quiz.domain.Difficulty.EASY;
@@ -15,7 +18,7 @@ public class QuizMapperTest {
     @Test
     public void shouldMapQuizToQuizResponse() {
         //given
-        Quiz quiz = new Quiz(1L, "titre", "description", 20, HISTORY, EASY, new ArrayList<>());
+        Quiz quiz = new Quiz(1L, UUID.randomUUID(), "titre", "description", 20, HISTORY, EASY, new ArrayList<>());
 
         //when
         QuizResponse quizResponse = IQuizMapper.INSTANCE.quizToQuizResponse(quiz);

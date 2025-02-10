@@ -8,6 +8,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -31,6 +32,9 @@ public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    UUID uuid;
+
     @NotBlank
     private String title;
     @NotBlank
@@ -44,4 +48,9 @@ public class Quiz {
 
     @OneToMany
     private List<Question> questions;
+
+    @PrePersist
+    void prePersist() {
+        uuid = UUID.randomUUID();
+    }
 }

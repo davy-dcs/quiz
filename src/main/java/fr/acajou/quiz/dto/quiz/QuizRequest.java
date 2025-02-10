@@ -1,4 +1,4 @@
-package fr.acajou.quiz.dto;
+package fr.acajou.quiz.dto.quiz;
 
 import fr.acajou.quiz.domain.Category;
 import fr.acajou.quiz.domain.Difficulty;

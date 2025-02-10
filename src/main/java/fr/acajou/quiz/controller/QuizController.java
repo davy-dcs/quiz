@@ -1,7 +1,7 @@
 package fr.acajou.quiz.controller;
 
-import fr.acajou.quiz.dto.QuizRequest;
-import fr.acajou.quiz.dto.QuizResponse;
+import fr.acajou.quiz.dto.quiz.QuizRequest;
+import fr.acajou.quiz.dto.quiz.QuizResponse;
 import fr.acajou.quiz.service.IQuizService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/quizzes")
 @RequiredArgsConstructor
-//@Secured("ROLE_ADMIN")
+@Secured("ROLE_USER")
 public class QuizController {
     private final IQuizService quizService;
 

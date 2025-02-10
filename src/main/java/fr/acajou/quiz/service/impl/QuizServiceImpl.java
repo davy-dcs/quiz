@@ -1,8 +1,8 @@
 package fr.acajou.quiz.service.impl;
 
-import fr.acajou.quiz.dto.IQuizMapper;
-import fr.acajou.quiz.dto.QuizRequest;
-import fr.acajou.quiz.dto.QuizResponse;
+import fr.acajou.quiz.dto.quiz.IQuizMapper;
+import fr.acajou.quiz.dto.quiz.QuizRequest;
+import fr.acajou.quiz.dto.quiz.QuizResponse;
 import fr.acajou.quiz.exception.QuizConflictException;
 import fr.acajou.quiz.exception.QuizNotFoundException;
 import fr.acajou.quiz.repository.IQuizRepository;

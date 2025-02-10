@@ -1,4 +1,4 @@
-package fr.acajou.quiz.dto;
+package fr.acajou.quiz.dto.quiz;
 
 import fr.acajou.quiz.domain.Quiz;
 import org.mapstruct.Mapper;
