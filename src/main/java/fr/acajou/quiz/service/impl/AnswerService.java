@@ -48,4 +48,10 @@ public class AnswerService implements IAnswerService {
                 .orElseThrow(() -> new AnswerNotFoundException("Answer Not Found : L'uuid answer " + uuid + " n'a pas été trouvé"));
         return answerEntity.getId();
     }
+    public Answer getbyUUID(Answer answer) {
+        UUID uuid = answer.getUuid();
+        Answer answerEntity = answerRepository.findByUuid(uuid)
+                .orElseThrow(() -> new AnswerNotFoundException("Answer Not Found : L'uuid answer " + uuid + " n'a pas été trouvé"));
+        return answerEntity;
+    }
 }

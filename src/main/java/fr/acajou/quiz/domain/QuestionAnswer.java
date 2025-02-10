@@ -29,5 +29,10 @@ public class QuestionAnswer {
     @JoinColumn(name = "id_answer", nullable = false)
     private Answer answer;
 
-    private boolean correct = false;
+    private boolean correct;
+
+    @PrePersist
+    public void prePersist() {
+        this.uuid = UUID.randomUUID();
+    }
 }

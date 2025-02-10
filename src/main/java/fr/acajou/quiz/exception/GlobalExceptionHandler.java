@@ -17,4 +17,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> QuestionNotFoundException(AnswerNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(exception.getMessage());
     }
+
+    @ExceptionHandler(QuestionAnswerNotFoundException.class)
+    public ResponseEntity<String> QuestionAnswerNotFoundException(QuestionAnswerNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(exception.getMessage());
+    }
 }

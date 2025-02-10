@@ -42,10 +42,18 @@ public class QuestionService implements IQuestionService {
         Question questionSup = question.orElseThrow(() -> new QuestionNotFoundException("Question Not Found : L'uuid question "+uuid+" n'a pas été trouvé"));
         questionRepository.delete(questionSup);
     }
+
     public Long getId(QuestionDTO questionDTO) {
         UUID uuid = questionDTO.uuid();
         Question questionEntity = questionRepository.findByUuid(uuid)
                 .orElseThrow(() -> new QuestionNotFoundException("Question Not Found : L'uuid question " + uuid + " n'a pas été trouvé"));
         return questionEntity.getId();
+    }
+
+    public Question getbyUUID(Question question) {
+        UUID uuid = question.getUuid();
+        Question questionEntity = questionRepository.findByUuid(uuid)
+                .orElseThrow(() -> new QuestionNotFoundException("Question Not Found : L'uuid question " + uuid + " n'a pas été trouvé"));
+        return questionEntity;
     }
 }

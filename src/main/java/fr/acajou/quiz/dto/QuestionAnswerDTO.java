@@ -14,7 +14,5 @@ public record QuestionAnswerDTO(
 
         Answer answer,
 
-        @NotNull
-        @AssertFalse
         boolean correct
 ) {}

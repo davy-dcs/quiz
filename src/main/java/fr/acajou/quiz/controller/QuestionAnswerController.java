@@ -31,7 +31,7 @@ public class QuestionAnswerController {
 
     @GetMapping("/{uuid}")
     public ResponseEntity<QuestionAnswerDTO> getQuestionAnswer(@PathVariable UUID uuid){
-        QuestionAnswerDTO questionAnswerDTO = questionAnswerService.getQuestionbyUUID(uuid);
+        QuestionAnswerDTO questionAnswerDTO = questionAnswerService.getQuestionAnswerbyUUID(uuid);
         return ResponseEntity.ok(questionAnswerDTO);
     }
 
