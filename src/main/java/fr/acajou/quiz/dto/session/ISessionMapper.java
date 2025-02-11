@@ -13,7 +13,9 @@ public interface ISessionMapper {
     ISessionMapper INSTANCE = Mappers.getMapper(ISessionMapper.class);
 
     @Mapping(source = "quiz.uuid", target = "quiz")
+    @Mapping(source = "user.uuid", target = "user")
     SessionResponse sessionToSessionResponse(Session session);
     @Mapping(source = "quiz", target = "quiz.uuid")
+    @Mapping(source = "user", target = "user.uuid")
     Session sessionRequestToSession(SessionRequest sessionRequest);
 }

@@ -58,7 +58,7 @@ class HandleControllerExceptionTest {
     @Test
     void handleSessionConflict() {
         //given
-        SessionRequest sessionRequest = new SessionRequest(null,UUID.randomUUID(),UUID.randomUUID());
+        SessionRequest sessionRequest = new SessionRequest(null,UUID.randomUUID(), UUID.randomUUID());
         given(sessionController.post(sessionRequest)).willAnswer( invocation -> { throw new SessionConflictException("Session similaire existe déjà"); });
 
         //then

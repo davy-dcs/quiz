@@ -1,14 +1,14 @@
 package fr.acajou.quiz.dto.session;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
 public record SessionRequest(
         Integer timer,
-        @NotBlank
+        @NotNull
         UUID quiz,
-        @NotBlank
+        @NotNull
         UUID user
 ) {
 }

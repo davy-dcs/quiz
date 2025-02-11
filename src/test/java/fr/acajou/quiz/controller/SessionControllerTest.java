@@ -2,7 +2,6 @@ package fr.acajou.quiz.controller;
 
 import fr.acajou.quiz.dto.session.SessionRequest;
 import fr.acajou.quiz.dto.session.SessionResponse;
-import fr.acajou.quiz.exception.QuizConflictException;
 import fr.acajou.quiz.exception.SessionConflictException;
 import fr.acajou.quiz.service.ISessionService;
 import org.apache.coyote.BadRequestException;

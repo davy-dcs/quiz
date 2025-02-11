@@ -2,6 +2,8 @@ package fr.acajou.quiz.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.time.Instant;
 import java.util.Date;
@@ -27,11 +29,13 @@ public class Session {
 
     @ManyToOne
     @JoinColumn(name = "quiz")
+    @Cascade(CascadeType.ALL)
     private Quiz quiz;
 
     @ManyToOne
     @JoinColumn(name = "users")
-    private Users users;
+    @Cascade(CascadeType.ALL)
+    private Users user;
 
 
     @PrePersist
@@ -44,11 +48,11 @@ public class Session {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Session session = (Session) o;
-        return Objects.equals(timer, session.timer) && Objects.equals(quiz, session.quiz) && Objects.equals(users, session.users);
+        return Objects.equals(timer, session.timer) && Objects.equals(quiz, session.quiz) && Objects.equals(user, session.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timer, quiz, users);
+        return Objects.hash(timer, quiz, user);
     }
 }

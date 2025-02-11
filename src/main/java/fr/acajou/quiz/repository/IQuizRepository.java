@@ -14,4 +14,5 @@ public interface IQuizRepository extends JpaRepository<Quiz, Long> {
 
     boolean existsByNumberOfQuestionsAndCategoryAndDifficulty(Integer numberOfQuestions, Category category, Difficulty difficulty);
     boolean deleteByUuid(UUID uuid);
+    Optional<Quiz> findByUuid(UUID uuid);
 }

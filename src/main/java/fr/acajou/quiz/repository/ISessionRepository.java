@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface ISessionRepository extends JpaRepository<Session, Long> {
-    boolean existsByTimerAndQuiz_UuidAndUsers_Uuid(Integer timer, UUID quizUuid, UUID userUuid);
+    boolean existsByTimerAndQuiz_UuidAndUser_Uuid(Integer timer, UUID quizUuid, UUID userUuid);
 }

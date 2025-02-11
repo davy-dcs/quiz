@@ -1,5 +1,6 @@
 package fr.acajou.quiz.service.impl;
 
+import fr.acajou.quiz.domain.Quiz;
 import fr.acajou.quiz.dto.quiz.IQuizMapper;
 import fr.acajou.quiz.dto.quiz.QuizRequest;
 import fr.acajou.quiz.dto.quiz.QuizResponse;
@@ -10,6 +11,7 @@ import fr.acajou.quiz.service.IQuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -33,6 +35,15 @@ public class QuizServiceImpl implements IQuizService {
     public String delete(UUID uuid) {
         if (quizRepository.deleteByUuid(uuid)) {
             return "Quiz supprimé";
+        } else {
+            throw new QuizNotFoundException("Quiz non trouvé");
+        }
+    }
+
+    @Override
+    public Quiz getQuiz(UUID uuid) {
+        if (quizRepository.findByUuid(uuid).isPresent()) {
+            return quizRepository.findByUuid(uuid).get();
         } else {
             throw new QuizNotFoundException("Quiz non trouvé");
         }

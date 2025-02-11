@@ -33,7 +33,7 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    UUID uuid;
+    private UUID uuid;
 
     @NotBlank
     private String title;
