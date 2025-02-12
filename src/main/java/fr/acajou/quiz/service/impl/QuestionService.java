@@ -1,14 +1,19 @@
 package fr.acajou.quiz.service.impl;
 
+import fr.acajou.quiz.domain.Category;
+import fr.acajou.quiz.domain.Difficulty;
 import fr.acajou.quiz.domain.Question;
 import fr.acajou.quiz.dto.QuestionDTO;
 import fr.acajou.quiz.dto.mapper.QuestionMapper;
+import fr.acajou.quiz.exception.QuestionListNotFoundException;
 import fr.acajou.quiz.exception.QuestionNotFoundException;
 import fr.acajou.quiz.repository.IQuestionRepository;
 import fr.acajou.quiz.service.IQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -51,9 +56,7 @@ public class QuestionService implements IQuestionService {
     }
 
     public Question getbyUUID(UUID uuid) {
-        //UUID uuid = question.getUuid();
-        Question questionEntity = questionRepository.findByUuid(uuid)
+        return questionRepository.findByUuid(uuid)
                 .orElseThrow(() -> new QuestionNotFoundException("Question Not Found : L'uuid question " + uuid + " n'a pas été trouvé"));
-        return questionEntity;
     }
 }

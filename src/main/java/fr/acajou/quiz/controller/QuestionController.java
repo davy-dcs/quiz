@@ -1,5 +1,7 @@
 package fr.acajou.quiz.controller;
 
+import fr.acajou.quiz.domain.Category;
+import fr.acajou.quiz.domain.Difficulty;
 import fr.acajou.quiz.dto.QuestionDTO;
 import fr.acajou.quiz.service.impl.QuestionService;
 import jakarta.validation.Valid;
@@ -7,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController

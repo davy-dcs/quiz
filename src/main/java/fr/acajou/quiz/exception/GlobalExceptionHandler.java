@@ -13,8 +13,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(exception.getMessage());
     }
 
+    @ExceptionHandler(QuestionListNotFoundException.class)
+    public ResponseEntity<String> QuestionListNotFoundException(QuestionNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(exception.getMessage());
+    }
+
     @ExceptionHandler(AnswerNotFoundException.class)
-    public ResponseEntity<String> QuestionNotFoundException(AnswerNotFoundException exception) {
+    public ResponseEntity<String> AnswerNotFoundException(AnswerNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(exception.getMessage());
     }
 
