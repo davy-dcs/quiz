@@ -1,16 +1,12 @@
 package fr.acajou.quiz.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "QUESTION_ANSWER")
@@ -29,5 +25,10 @@ public class QuestionAnswer {
     @JoinColumn(name = "id_answer", nullable = false)
     private Answer answer;
 
-    private boolean correct = false;
+    private boolean correct;
+
+    @PrePersist
+    public void prePersist() {
+        this.uuid = UUID.randomUUID();
+    }
 }
