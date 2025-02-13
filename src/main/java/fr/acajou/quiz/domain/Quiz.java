@@ -47,7 +47,7 @@ public class Quiz {
     private Difficulty difficulty;
 
     @OneToMany
-    private List<Question> questions;
+    private List<QuestionAnswer> questions;
 
     @PrePersist
     void prePersist() {

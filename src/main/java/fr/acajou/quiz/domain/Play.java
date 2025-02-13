@@ -3,6 +3,8 @@ package fr.acajou.quiz.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,6 +15,8 @@ public class Play {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private UUID uuid;
 
     private int score;
 
@@ -28,6 +32,7 @@ public class Play {
     @PrePersist
     public void prePersist() {
         this.score = 0;
+        this.uuid = UUID.randomUUID();
     }
 
 }
