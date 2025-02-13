@@ -9,6 +9,7 @@ import fr.acajou.quiz.dto.mapper.QuestionAnswerMapper;
 import fr.acajou.quiz.exception.QuestionAnswerNotFoundException;
 import fr.acajou.quiz.exception.QuestionNotFoundException;
 import fr.acajou.quiz.repository.IQuestionAnswerRepository;
+import fr.acajou.quiz.service.IQuestionAnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class QuestionAnswerService {
+public class QuestionAnswerService implements IQuestionAnswerService{
 
     private final IQuestionAnswerRepository questionAnswerRepository;
     private final QuestionAnswerMapper questionAnswerMapper;
@@ -25,7 +26,7 @@ public class QuestionAnswerService {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
-
+    @Override
     public QuestionAnswerDTO createQuestionAnswer(QuestionAnswerDTO questionAnswerDTO) {
 
         Question question = questionService.getbyUUID(questionAnswerDTO.question_uuid());
@@ -36,6 +37,7 @@ public class QuestionAnswerService {
         return questionAnswerMapper.entityToDto(savedQuestionAnswer,question,answer);
     }
 
+    @Override
     public QuestionAnswerDTO updateQuestionAnswer(QuestionAnswerDTO questionAnswerDTO) {
 
         Long id = getId(questionAnswerDTO);
@@ -48,6 +50,7 @@ public class QuestionAnswerService {
         return questionAnswerMapper.entityToDto(savedQuestionAnswer, question, answer);
     }
 
+    @Override
     public QuestionAnswerDTO getQuestionAnswerbyUUID(UUID uuid) {
         Optional<QuestionAnswer> questionAnswer = questionAnswerRepository.findByUuid(uuid);
         QuestionAnswer qa =  questionAnswer.orElseThrow(() -> new QuestionAnswerNotFoundException("Question Answer Not Found : L'uuid questionAnswer "+uuid+" n'a pas été trouvé"));
@@ -55,12 +58,14 @@ public class QuestionAnswerService {
         return qdto;
     }
 
+    @Override
     public void deleteQuestionAnswerbyUUID(UUID uuid) {
         Optional<QuestionAnswer> questionAnswer = questionAnswerRepository.findByUuid(uuid);
         QuestionAnswer questionAnswerSup = questionAnswer.orElseThrow(() -> new QuestionAnswerNotFoundException("Question Answer Not Found : L'uuid questionAnswer "+uuid+" n'a pas été trouvé"));
         questionAnswerRepository.delete(questionAnswerSup);
     }
 
+    @Override
     public Long getId(QuestionAnswerDTO questionAnswerDTO) {
         UUID uuid = questionAnswerDTO.uuid();
         QuestionAnswer questionAnswerEntity = questionAnswerRepository.findByUuid(uuid)
