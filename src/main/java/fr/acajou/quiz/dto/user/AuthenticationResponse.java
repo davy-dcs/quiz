@@ -1,4 +1,4 @@
-package fr.acajou.quiz.dto;
+package fr.acajou.quiz.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -13,6 +13,6 @@ import java.util.UUID;
 
 @Repository
 public interface IPlayRepository extends JpaRepository<Play, Long> {
-    Optional<Play> findByUuid(UUID uuid);
     List<Play> findByUsers_Uuid(UUID uuid);
+
 }

@@ -1,8 +1,8 @@
 package fr.acajou.quiz.controller;
 
-import fr.acajou.quiz.dto.AuthenticationRequest;
-import fr.acajou.quiz.dto.AuthenticationResponse;
-import fr.acajou.quiz.dto.RegisterRequest;
+import fr.acajou.quiz.dto.user.AuthenticationRequest;
+import fr.acajou.quiz.dto.user.AuthenticationResponse;
+import fr.acajou.quiz.dto.user.RegisterRequest;
 import fr.acajou.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

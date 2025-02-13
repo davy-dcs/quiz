@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequestMapping("/plaies")
 @RequiredArgsConstructor
 @Secured("ROLE_USER")
-public class PlayController {
+public class PlayController {/*
     private final IPlayService playService;
     @PostMapping
     public ResponseEntity<PlayResponse> post(@RequestBody PlayRequest playRequest) {
@@ -27,5 +27,5 @@ public class PlayController {
     @GetMapping("/{play}")
     public ResponseEntity<QuizPlayResponse> play(@RequestParam UUID play) {
         return ResponseEntity.status(HttpStatus.OK).body(playService.letsPlay(play));
-    }
+    }*/
 }

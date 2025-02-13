@@ -2,9 +2,9 @@ package fr.acajou.quiz.service;
 
 
 import fr.acajou.quiz.domain.Users;
-import fr.acajou.quiz.dto.AuthenticationRequest;
-import fr.acajou.quiz.dto.AuthenticationResponse;
-import fr.acajou.quiz.dto.RegisterRequest;
+import fr.acajou.quiz.dto.user.AuthenticationRequest;
+import fr.acajou.quiz.dto.user.AuthenticationResponse;
+import fr.acajou.quiz.dto.user.RegisterRequest;
 import fr.acajou.quiz.repository.IUserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

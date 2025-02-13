@@ -3,13 +3,15 @@ package fr.acajou.quiz.dto.quiz;
 import fr.acajou.quiz.domain.Category;
 import fr.acajou.quiz.domain.Difficulty;
 import fr.acajou.quiz.domain.Quiz;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-11T11:27:04+0100",
+    date = "2025-02-13T14:01:39+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -38,6 +40,20 @@ public class IQuizMapperImpl implements IQuizMapper {
         QuizResponse quizResponse = new QuizResponse( uuid, title, description, numberOfQuestions, category, difficulty );
 
         return quizResponse;
+    }
+
+    @Override
+    public List<QuizResponse> quizzesToQuizzesResponses(List<Quiz> quizzes) {
+        if ( quizzes == null ) {
+            return null;
+        }
+
+        List<QuizResponse> list = new ArrayList<QuizResponse>( quizzes.size() );
+        for ( Quiz quiz : quizzes ) {
+            list.add( quizToQuizResponse( quiz ) );
+        }
+
+        return list;
     }
 
     @Override

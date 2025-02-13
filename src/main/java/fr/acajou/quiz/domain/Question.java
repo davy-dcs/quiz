@@ -1,12 +1,12 @@
 package fr.acajou.quiz.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
-import org.aspectj.weaver.patterns.TypeCategoryTypePattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,9 +28,12 @@ public class Question {
 
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
-//TODO demander a steve pour list answer
+
     @Enumerated(EnumType.STRING)
     private List<Category> categories;
+
+    @OneToMany
+    private List<QuestionAnswer> answers;
 
     @PrePersist
     public void prePersist() {

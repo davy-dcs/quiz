@@ -3,14 +3,16 @@ package fr.acajou.quiz.dto.session;
 import fr.acajou.quiz.domain.Quiz;
 import fr.acajou.quiz.domain.Session;
 import fr.acajou.quiz.domain.Users;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-11T11:27:05+0100",
+    date = "2025-02-13T14:01:39+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -52,6 +54,20 @@ public class ISessionMapperImpl implements ISessionMapper {
         session.timer( sessionRequest.timer() );
 
         return session.build();
+    }
+
+    @Override
+    public List<SessionResponse> sessionsToSessionsResponses(List<Session> sessions) {
+        if ( sessions == null ) {
+            return null;
+        }
+
+        List<SessionResponse> list = new ArrayList<SessionResponse>( sessions.size() );
+        for ( Session session : sessions ) {
+            list.add( sessionToSessionResponse( session ) );
+        }
+
+        return list;
     }
 
     private UUID sessionQuizUuid(Session session) {

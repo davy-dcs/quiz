@@ -5,12 +5,14 @@ import fr.acajou.quiz.domain.Session;
 import fr.acajou.quiz.domain.Users;
 import fr.acajou.quiz.dto.session.SessionUuid;
 import fr.acajou.quiz.dto.user.UserUuid;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T09:46:27+0100",
+    date = "2025-02-13T14:01:39+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -39,6 +41,20 @@ public class IPlayMapperImpl implements IPlayMapper {
         PlayResponse playResponse = new PlayResponse();
 
         return playResponse;
+    }
+
+    @Override
+    public List<PlayResponse> plaiesToPlaiesResponses(List<Play> plaies) {
+        if ( plaies == null ) {
+            return null;
+        }
+
+        List<PlayResponse> list = new ArrayList<PlayResponse>( plaies.size() );
+        for ( Play play : plaies ) {
+            list.add( playToPlayResponse( play ) );
+        }
+
+        return list;
     }
 
     protected Users userUuidToUsers(UserUuid userUuid) {

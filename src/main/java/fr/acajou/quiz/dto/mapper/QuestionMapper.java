@@ -7,6 +7,7 @@ import fr.acajou.quiz.repository.IQuestionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ public class QuestionMapper {
                 questionDTO.uuid(),
                 questionDTO.value(),
                 questionDTO.difficulty(),
-                questionDTO.categories());
+                questionDTO.categories(),
+                new ArrayList<>());
     }
 }

@@ -25,7 +25,6 @@ public class SessionServiceImpl implements ISessionService {
     private final ISessionRepository sessionRepository;
     private final UserDetailsServiceImpl userService;
     private final IQuizService quizService;
-    private final IPlayService playService;
 
     @Override
     public SessionResponse post(SessionRequest sessionRequest) {

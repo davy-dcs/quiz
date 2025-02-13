@@ -25,7 +25,7 @@ public class QuestionService implements IQuestionService {
     private final QuestionMapper questionMapper;
 
     public QuestionDTO createQuestion(QuestionDTO questionDTO) {
-        Question question = new Question(null,null,questionDTO.value(),questionDTO.difficulty(),questionDTO.categories());
+        Question question = new Question(null,null,questionDTO.value(),questionDTO.difficulty(),questionDTO.categories(), new ArrayList<>());
         Question savedQuestion = questionRepository.save(question);
         return questionMapper.entityToDto(savedQuestion);
     }

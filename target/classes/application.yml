@@ -25,3 +25,4 @@ application:
       expiration-time: 86400000 # 1 day
   role:
     default: ROLE_USER
+
