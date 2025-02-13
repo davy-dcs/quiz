@@ -31,7 +31,7 @@ public class Question {
 
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
-
+//TODO demander a steve pour list answer
     @Enumerated(EnumType.STRING)
     private List<Category> categories;
 

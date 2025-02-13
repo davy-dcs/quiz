@@ -1,9 +1,7 @@
 package fr.acajou.quiz;
 
 import fr.acajou.quiz.domain.*;
-import fr.acajou.quiz.repository.IQuizRepository;
-import fr.acajou.quiz.repository.IRoleRepository;
-import fr.acajou.quiz.repository.IUserRepository;
+import fr.acajou.quiz.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +18,8 @@ public class QuizApplication implements CommandLineRunner {
 	private final IUserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final IQuizRepository quizRepository;
+	private final ISessionRepository sessionRepository;
+	private final IPlayRepository playRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(QuizApplication.class, args);
@@ -59,5 +59,20 @@ public class QuizApplication implements CommandLineRunner {
 				.numberOfQuestions(20)
 				.build();
 		quizRepository.save(quiz1);
+
+		//Ajouter une session
+		Session session1 = Session.builder()
+				.quiz(quizRepository.findById(1L).get())
+				.user(userRepository.findById(2L).get())
+				.timer(null)
+				.build();
+		sessionRepository.save(session1);
+
+		//Ajouter un play
+		Play play = Play.builder()
+				.users(userRepository.findById(2L).get())
+				.session(sessionRepository.findById(1L).get())
+				.build();
+		playRepository.save(play);
 	}
 }

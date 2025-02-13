@@ -19,7 +19,7 @@ public class HandleControllerException {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }
 
-    @ExceptionHandler(value = {QuizNotFoundException.class, UserNotFoundException.class})
+    @ExceptionHandler(value = {QuizNotFoundException.class, UserNotFoundException.class, SessionNotFoundException.class, PlayNotFoundException.class})
     protected ResponseEntity<Object> handleNotFound(RuntimeException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }

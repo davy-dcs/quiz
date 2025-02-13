@@ -29,12 +29,12 @@ public class Session {
 
     @ManyToOne
     @JoinColumn(name = "quiz")
-    @Cascade(CascadeType.ALL)
+    @Cascade(CascadeType.MERGE)
     private Quiz quiz;
 
     @ManyToOne
     @JoinColumn(name = "users")
-    @Cascade(CascadeType.ALL)
+    @Cascade(CascadeType.MERGE)
     private Users user;
 
 

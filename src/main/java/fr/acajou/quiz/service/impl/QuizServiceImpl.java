@@ -1,5 +1,7 @@
 package fr.acajou.quiz.service.impl;
 
+import fr.acajou.quiz.domain.Category;
+import fr.acajou.quiz.domain.Difficulty;
 import fr.acajou.quiz.domain.Quiz;
 import fr.acajou.quiz.dto.quiz.IQuizMapper;
 import fr.acajou.quiz.dto.quiz.QuizRequest;
@@ -11,13 +13,18 @@ import fr.acajou.quiz.service.IQuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class QuizServiceImpl implements IQuizService {
     private final IQuizRepository quizRepository;
+
+    @Override
+    public List<QuizResponse> getAll() {
+        return IQuizMapper.INSTANCE.quizzesToQuizzesResponses(quizRepository.findAll());
+    }
 
     @Override
     public QuizResponse post(QuizRequest quizRequest) {

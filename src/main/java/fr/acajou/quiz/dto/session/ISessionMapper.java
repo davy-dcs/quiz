@@ -7,6 +7,8 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ISessionMapper {
 
@@ -18,4 +20,6 @@ public interface ISessionMapper {
     @Mapping(source = "quiz", target = "quiz.uuid")
     @Mapping(source = "user", target = "user.uuid")
     Session sessionRequestToSession(SessionRequest sessionRequest);
+
+    List<SessionResponse> sessionsToSessionsResponses(List<Session> sessions);
 }

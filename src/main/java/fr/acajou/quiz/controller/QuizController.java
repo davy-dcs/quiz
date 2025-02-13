@@ -10,14 +10,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/quizzes")
 @RequiredArgsConstructor
-@Secured("ROLE_USER")
+@Secured("ROLE_ADMIN")
 public class QuizController {
     private final IQuizService quizService;
+
+    @GetMapping
+    @Secured("ROLE_USER")
+    public ResponseEntity<List<QuizResponse>> getAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(quizService.getAll());
+    }
 
     @PostMapping
     public ResponseEntity<QuizResponse> post(@RequestBody @Valid QuizRequest quizRequest) {
