@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        h1 {
+            color: #25a7e7;
+            text-align: center;
+        }
+        .data-header {
+            width: 100%;
+        }
+        .pdf {
+            width: 100%;
+        }
+        .pdf, .pdf th, .pdf td {
+            border: 1px solid #25a7e7;
+            border-collapse: collapse;
+        }
+        .pdf th {
+            background-color: #25a7e7;
+            color: white;
+        }
+        .total {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<h1>Score</h1>
+
+<br />
+<table class="pdf">
+    <tr>
+        <th>Date</th>
+        <th>User</th>
+        <th>Score</th>
+    </tr>
+    <tr>
+        <td th:text="'Date: ' + ${play.session.date}"></td>
+        <td th:text="'Nom: ' + ${play.users.username}"></td>
+        <td th:text="'Score: ' + ${play.score}"></td>
+    </tr>
+</table>
+</body>
+</html>
