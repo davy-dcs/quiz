@@ -28,7 +28,6 @@ public class PlayServiceImpl implements IPlayService {
     private final UserDetailsServiceImpl userService;
     private final ISessionService sessionService;
     private final QuestionService questionService;
-    private final IQuestionAnswerRepository questionAnswerRepository;
 
     @Override
     public PlayResponse post(PlayRequest playRequest) {
@@ -67,6 +66,7 @@ public class PlayServiceImpl implements IPlayService {
 
             questionsAnswersResponse.add(
                     new QuestionAnswersResponse(
+                            question.getUuid(),
                             new QuestionResponse(question.getUuid(), question.getValue(), question.getDifficulty()),
                             answers
                     )
@@ -77,7 +77,17 @@ public class PlayServiceImpl implements IPlayService {
                 play.getSession().getQuiz().getTitle(),
                 play.getSession().getQuiz().getDescription(),
                 play.getSession().getQuiz().getCategory(),
-                questionsAnswersResponse
+                play.getSession().getQuiz().getQuestions()
         );
+    }
+
+    @Override
+    public Integer addScore(UUID uuid) {
+        Play play = playRepository.findByUuid(uuid).orElseThrow(() -> new PlayNotFoundException("Play not found"));
+
+        play.setScore(play.getScore()+1);
+        playRepository.save(play);
+
+        return play.getScore();
     }
 }

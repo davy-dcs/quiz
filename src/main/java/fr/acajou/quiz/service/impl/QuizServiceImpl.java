@@ -4,11 +4,13 @@ import fr.acajou.quiz.domain.Category;
 import fr.acajou.quiz.domain.Difficulty;
 import fr.acajou.quiz.domain.Quiz;
 import fr.acajou.quiz.dto.quiz.IQuizMapper;
+import fr.acajou.quiz.dto.quiz.QuizPlayResponse;
 import fr.acajou.quiz.dto.quiz.QuizRequest;
 import fr.acajou.quiz.dto.quiz.QuizResponse;
 import fr.acajou.quiz.exception.QuizConflictException;
 import fr.acajou.quiz.exception.QuizNotFoundException;
 import fr.acajou.quiz.repository.IQuizRepository;
+import fr.acajou.quiz.service.IQuizQuestionService;
 import fr.acajou.quiz.service.IQuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class QuizServiceImpl implements IQuizService {
     private final IQuizRepository quizRepository;
+    private final IQuizQuestionService quizQuestionService;
 
     @Override
     public List<QuizResponse> getAll() {
@@ -27,15 +30,13 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public QuizResponse post(QuizRequest quizRequest) {
+    public QuizPlayResponse post(QuizRequest quizRequest) {
         boolean quizExists = quizRepository.existsByNumberOfQuestionsAndCategoryAndDifficulty(quizRequest.numberOfQuestion(), quizRequest.category(), quizRequest.difficulty());
         if (quizExists) {
             throw new QuizConflictException("Un quiz similaire existe déjà.");
         }
 
-        //TODO Programme ajoutant les questions
-
-        return IQuizMapper.INSTANCE.quizToQuizResponse(quizRepository.save(IQuizMapper.INSTANCE.quizRequestToQuiz(quizRequest)));
+        return quizQuestionService.initializer(quizRequest);
     }
 
     @Override

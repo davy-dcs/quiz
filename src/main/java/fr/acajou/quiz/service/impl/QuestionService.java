@@ -59,4 +59,9 @@ public class QuestionService implements IQuestionService {
         return questionRepository.findByUuid(uuid)
                 .orElseThrow(() -> new QuestionNotFoundException("Question Not Found : L'uuid question " + uuid + " n'a pas été trouvé"));
     }
+
+    @Override
+    public List<Question> find(Category category, Difficulty difficulty) {
+        return questionRepository.findByCategoriesAndDifficulty(category, difficulty);
+    }
 }

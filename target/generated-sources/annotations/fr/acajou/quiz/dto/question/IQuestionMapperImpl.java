@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-13T16:14:59+0100",
+    date = "2025-02-16T18:58:24+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -68,13 +68,15 @@ public class IQuestionMapperImpl implements IQuestionMapper {
             return null;
         }
 
+        UUID uuid = null;
         List<AnswerResponse> answers = null;
 
+        uuid = question.getUuid();
         answers = questionAnswerListToAnswerResponseList( question.getAnswers() );
 
         QuestionResponse question1 = null;
 
-        QuestionAnswersResponse questionAnswersResponse = new QuestionAnswersResponse( question1, answers );
+        QuestionAnswersResponse questionAnswersResponse = new QuestionAnswersResponse( uuid, question1, answers );
 
         return questionAnswersResponse;
     }

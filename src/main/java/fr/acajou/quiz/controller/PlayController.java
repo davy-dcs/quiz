@@ -27,4 +27,10 @@ public class PlayController {
     public ResponseEntity<QuizPlayResponse> play(@RequestParam UUID play) {
         return ResponseEntity.status(HttpStatus.OK).body(playService.letsPlay(play));
     }
+
+    //Add point
+    @PutMapping("/{play}")
+    public ResponseEntity<Integer> addScore(@RequestParam UUID play) {
+        return ResponseEntity.status(HttpStatus.OK).body(playService.addScore(play));
+    }
 }

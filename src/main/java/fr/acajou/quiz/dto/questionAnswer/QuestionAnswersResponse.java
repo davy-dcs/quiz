@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 public record QuestionAnswersResponse(
+        UUID uuid,
+
         QuestionResponse question,
         List<AnswerResponse> answers
 ) {

@@ -14,4 +14,6 @@ import java.util.UUID;
 @Repository
 public interface IQuestionRepository extends JpaRepository<Question, Long> {
     Optional<Question> findByUuid(UUID uuid);
+
+    List<Question> findByCategoriesAndDifficulty(Category categories, Difficulty difficulty);
 }

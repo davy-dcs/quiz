@@ -1,5 +1,6 @@
 package fr.acajou.quiz.controller;
 
+import fr.acajou.quiz.dto.quiz.QuizPlayResponse;
 import fr.acajou.quiz.dto.quiz.QuizRequest;
 import fr.acajou.quiz.dto.quiz.QuizResponse;
 import fr.acajou.quiz.service.IQuizService;
@@ -27,7 +28,7 @@ public class QuizController {
     }
 
     @PostMapping
-    public ResponseEntity<QuizResponse> post(@RequestBody @Valid QuizRequest quizRequest) {
+    public ResponseEntity<QuizPlayResponse> post(@RequestBody @Valid QuizRequest quizRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(quizService.post(quizRequest));
     }
 

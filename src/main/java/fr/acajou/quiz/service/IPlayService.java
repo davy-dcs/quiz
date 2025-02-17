@@ -12,4 +12,5 @@ public interface IPlayService {
     PlayResponse post(PlayRequest playRequest);
     List<PlayResponse> getPlaies(UserUuid user);
     QuizPlayResponse letsPlay(UUID uuid);
+    Integer addScore(UUID uuid);
 }
