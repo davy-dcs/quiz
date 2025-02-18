@@ -19,12 +19,14 @@ public class AnswerService implements IAnswerService {
     private final IAnswerRepository answerRepository;
     private final AnswerMapper answerMapper;
 
+    @Override
     public AnswerDTO createAnswer(AnswerDTO answerDTO) {
         Answer answer = new Answer(null,null,answerDTO.value());
         Answer savedAnswer = answerRepository.save(answer);
         return answerMapper.entityToDto(savedAnswer);
     }
 
+    @Override
     public AnswerDTO updateAnswer(AnswerDTO answerDTO) {
         Long id = getId(answerDTO);
         Answer updateAnswer = answerMapper.dtoToEntity(answerDTO, id);
@@ -32,22 +34,28 @@ public class AnswerService implements IAnswerService {
         return answerMapper.entityToDto(savedAnswer);
     }
 
+    @Override
     public AnswerDTO getAnswerbyUUID(UUID uuid) {
         Optional<Answer> answer = answerRepository.findByUuid(uuid);
         return answer.map(answerMapper::entityToDto).orElseThrow(() -> new AnswerNotFoundException("Answer Not Found : L'uuid answer "+uuid+" n'a pas été trouvé"));
     }
 
+    @Override
     public void deleteAnswerbyUUID(UUID uuid) {
         Optional<Answer> answer = answerRepository.findByUuid(uuid);
         Answer answerSup = answer.orElseThrow(() -> new AnswerNotFoundException("Answer Not Found : L'uuid answer "+uuid+" n'a pas été trouvé"));
         answerRepository.delete(answerSup);
     }
+
+    @Override
     public Long getId(AnswerDTO answerDTO) {
         UUID uuid = answerDTO.uuid();
         Answer answerEntity = answerRepository.findByUuid(uuid)
                 .orElseThrow(() -> new AnswerNotFoundException("Answer Not Found : L'uuid answer " + uuid + " n'a pas été trouvé"));
         return answerEntity.getId();
     }
+
+    @Override
     public Answer getbyUUID(UUID uuid) {
         //UUID uuid = answer.getUuid();
         Answer answerEntity = answerRepository.findByUuid(uuid)
