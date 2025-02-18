@@ -8,5 +8,5 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface IQuestionAnswerMapper {
-    IQuestionMapper INSTANCE = Mappers.getMapper(IQuestionMapper.class);
+    //IQuestionMapper INSTANCE = Mappers.getMapper(IQuestionMapper.class);
 }
